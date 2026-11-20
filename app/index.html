@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Heat — GTA VI Cover Art Studio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VH</span>
+    <div>
+      <h1>VICE HEAT</h1>
+      <p>GTA VI Cover Art Studio · 7 layouts · 6 grades · 3 sizes</p>
+    </div>
+  </div>
+  <nav class="steps" aria-label="Steps">
+    <button class="step active" data-step="1"><b>1</b> Add photos</button>
+    <button class="step" data-step="2"><b>2</b> Caption</button>
+    <button class="step" data-step="3"><b>3</b> Export PNG</button>
+  </nav>
+  <div class="top-actions">
+    <span class="offline">Photos never leave this machine</span>
+    <button id="undo" title="Undo (Ctrl+Z)">↩ Undo</button>
+    <button id="redo" title="Redo (Ctrl+Shift+Z)">↪ Redo</button>
+  </div>
+</header>
+
+<main class="workbench">
+  <aside class="panel left">
+    <section>
+      <h2>Photos</h2>
+      <p class="hint">Click a photo to place it in the selected panel. Drag a photo onto a panel, or drop / paste your own files.</p>
+      <div id="photo-strip" class="strip"></div>
+      <input type="file" id="file-input" accept="image/*" multiple hidden>
+      <div class="row">
+        <button id="auto-layout" class="btn">Auto layout</button>
+        <button id="surprise" class="btn accent">🎲 Surprise me</button>
+      </div>
+    </section>
+    <section>
+      <h2>Layout</h2>
+      <div id="layout-list" class="layout-list"></div>
+    </section>
+    <section>
+      <h2>Grade</h2>
+      <div id="grade-list" class="grade-list"></div>
+    </section>
+    <section>
+      <h2>Caption</h2>
+      <label>Title <input id="f-title" maxlength="24"></label>
+      <label>Script subtitle <input id="f-script" maxlength="40"></label>
+      <label>Tagline <input id="f-tagline" maxlength="60"></label>
+      <label>Press quote <input id="f-quote" maxlength="60"></label>
+      <label>Outlet <input id="f-outlet" maxlength="40"></label>
+      <label>Volume <input id="f-volume" maxlength="12"></label>
+    </section>
+  </aside>
+
+  <section class="stage">
+    <canvas id="preview" aria-label="Live cover preview"></canvas>
+    <p class="stage-hint">Drag to pan · wheel to zoom · Shift-drag to swap panels · double-click to reset a panel</p>
+  </section>
+
+  <aside class="panel right">
+    <section>
+      <h2>Export PNG</h2>
+      <div id="export-list"></div>
+      <button id="export-all" class="btn accent wide">Export all three sizes</button>
+    </section>
+    <section>
+      <h2 id="panel-label">Panel 1 of 3</h2>
+      <label>Zoom <input type="range" id="panel-zoom" min="100" max="300" value="100"></label>
+      <div class="row wrap">
+        <button id="panel-prev" class="btn small">◀ Photo</button>
+        <button id="panel-next" class="btn small">Photo ▶</button>
+        <button id="panel-reset" class="btn small">Reset</button>
+        <button id="panel-flip" class="btn small">Flip</button>
+        <button id="panel-swap" class="btn small">Swap</button>
+        <button id="panel-face" class="btn small">Face</button>
+      </div>
+      <label>Name tag <input id="panel-name" maxlength="18"></label>
+    </section>
+    <section>
+      <h2>Look &amp; Title</h2>
+      <label>Paint <input type="range" id="look-paint" min="0" max="100" value="50"></label>
+      <label>Grade <input type="range" id="look-grade" min="0" max="100" value="50"></label>
+      <label>Halftone <input type="range" id="look-halftone" min="0" max="100" value="0"></label>
+      <label>Grain <input type="range" id="look-grain" min="0" max="100" value="0"></label>
+      <label>Glow <input type="range" id="look-glow" min="0" max="100" value="50"></label>
+    </section>
+    <section class="about">
+      <h2>About</h2>
+      <p>Turn your photos into a Vice City sunset poster. Every panel keeps its face in frame, every cover carries the full poster furniture — press quote, volume badge, tagline, billing block, barcode and seal.</p>
+    </section>
+  </aside>
+</main>
+
+<canvas id="shot-canvas" hidden></canvas>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

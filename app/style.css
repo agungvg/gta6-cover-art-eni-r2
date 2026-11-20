@@ -1,0 +1,172 @@
+/* Vice Heat — studio chrome. Dark room, warm neon accents, the poster does the shouting. */
+@font-face {
+  font-family: 'Anton';
+  src: url('fonts/Anton-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pacifico';
+  src: url('fonts/Pacifico-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('fonts/BebasNeue-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+* { box-sizing: border-box; }
+:root {
+  --bg: #120a14;
+  --panel: #1c1020;
+  --panel-2: #251428;
+  --line: #3a2340;
+  --text: #f5efe6;
+  --muted: #b9a6bd;
+  --accent: #ffd23f;
+  --accent-2: #ff5e62;
+  --good: #38ef7d;
+}
+html, body { margin: 0; padding: 0; height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.45 system-ui, -apple-system, 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+h1, h2 { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.06em; margin: 0; }
+
+.topbar {
+  display: flex; align-items: center; gap: 24px;
+  padding: 10px 18px;
+  background: linear-gradient(90deg, #1c0a24, #2b0f1e);
+  border-bottom: 2px solid var(--accent);
+  flex-wrap: wrap;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark {
+  width: 44px; height: 44px; display: grid; place-items: center;
+  font-family: 'Anton', sans-serif; font-size: 20px; color: #160a12;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-radius: 8px;
+  transform: rotate(-4deg);
+}
+.brand h1 { font-size: 26px; line-height: 1; color: var(--accent); }
+.brand p { margin: 2px 0 0; font-size: 11px; color: var(--muted); letter-spacing: 0.08em; }
+.steps { display: flex; gap: 8px; margin-left: auto; }
+.step {
+  background: var(--panel); color: var(--muted);
+  border: 1px solid var(--line); border-radius: 20px;
+  padding: 7px 14px; cursor: pointer; font-size: 13px;
+}
+.step b {
+  display: inline-grid; place-items: center;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--line); color: var(--text);
+  font-size: 11px; margin-right: 6px;
+}
+.step.active { background: var(--accent); color: #160a12; border-color: var(--accent); }
+.step.active b { background: #160a12; color: var(--accent); }
+.top-actions { display: flex; align-items: center; gap: 8px; }
+.offline { font-size: 11px; color: var(--good); letter-spacing: 0.05em; }
+
+button {
+  font: inherit; color: var(--text);
+  background: var(--panel-2); border: 1px solid var(--line);
+  border-radius: 8px; padding: 7px 12px; cursor: pointer;
+}
+button:hover:not(:disabled) { border-color: var(--accent); }
+button:disabled { opacity: 0.4; cursor: default; }
+.btn.accent { background: var(--accent); color: #160a12; border-color: var(--accent); font-weight: 700; }
+.btn.small { padding: 5px 9px; font-size: 12px; }
+.btn.wide { width: 100%; margin-top: 8px; }
+
+.workbench {
+  flex: 1; display: grid;
+  grid-template-columns: 300px 1fr 300px;
+  gap: 14px; padding: 14px; min-height: 0;
+}
+.panel {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 12px; padding: 14px;
+  overflow-y: auto; display: flex; flex-direction: column; gap: 18px;
+}
+.panel section h2 {
+  font-size: 17px; color: var(--accent);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 6px; margin-bottom: 10px;
+}
+.hint { font-size: 12px; color: var(--muted); margin: 0 0 8px; }
+label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+label input[type="text"], label input:not([type]) {
+  width: 100%; margin-top: 3px; padding: 7px 9px;
+  background: #120a14; color: var(--text);
+  border: 1px solid var(--line); border-radius: 6px; font: inherit;
+}
+label input:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
+input[type="range"] { width: 100%; accent-color: var(--accent); margin-top: 2px; }
+.row { display: flex; gap: 8px; margin-top: 8px; }
+.row.wrap { flex-wrap: wrap; }
+
+.strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.thumb {
+  position: relative; border: 1px solid var(--line); border-radius: 8px;
+  overflow: hidden; cursor: pointer; background: #0d0710;
+  padding: 0; min-height: 96px;
+}
+.thumb canvas { display: block; width: 100%; height: 96px; object-fit: cover; }
+.thumb span {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 0.05em;
+  background: rgba(12, 6, 16, 0.85); padding: 2px 4px; text-align: center;
+}
+.thumb.add {
+  display: grid; place-items: center;
+  color: var(--accent); font-size: 13px; font-weight: 700;
+  border-style: dashed;
+}
+
+.layout-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.layout-thumb { padding: 0; overflow: hidden; border-radius: 8px; }
+.layout-thumb canvas { display: block; width: 100%; height: 72px; }
+.layout-thumb span {
+  display: block; font-size: 11px; padding: 3px 4px;
+  background: var(--panel-2); text-align: left;
+}
+.layout-thumb.active { outline: 2px solid var(--accent); }
+
+.grade-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.grade-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; padding: 5px 9px; border-radius: 16px;
+}
+.grade-chip .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.grade-chip.active { outline: 2px solid var(--accent); }
+
+.stage {
+  display: flex; flex-direction: column; min-width: 0;
+  background: #0a060c; border: 1px solid var(--line); border-radius: 12px;
+  padding: 12px;
+}
+#preview { flex: 1; width: 100%; min-height: 420px; border-radius: 8px; background: #000; }
+.stage-hint { text-align: center; color: var(--muted); font-size: 12px; margin: 8px 0 0; }
+
+.export-row {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 100%; margin-bottom: 6px; text-align: left;
+}
+.export-row b { color: var(--accent); font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em; }
+.about p { font-size: 12px; color: var(--muted); margin: 0; }
+
+/* Shot mode: the cover fills the window, editor chrome hidden. */
+body.shot-cover { background: #000; }
+body.shot-cover .topbar, body.shot-cover .workbench { display: none; }
+body.shot-cover #shot-canvas { display: block; width: 100vw; height: 100vh; }
+#shot-canvas { display: none; }
+
+@media (max-width: 1100px) {
+  .workbench { grid-template-columns: 1fr; }
+  #preview { min-height: 340px; }
+}
